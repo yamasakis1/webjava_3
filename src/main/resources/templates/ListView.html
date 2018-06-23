@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>システナショッピング</title>
+</head>
+<body>
+
+<h1>商品一覧</h1>
+<form action="#" th:action="@{/ListView}" th:object="${ItemListform}" method="post">
+	<table border="1" class="ListView">
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>価格</th>
+		</tr>
+		<tr th:each = "item : ${items}">
+			<td><a th:text="${item.itemId}"></a></td>
+			<td><a th:text="${item.itemName}"></a></td>
+			<td><a th:text="${item.price}"></a><a>円</a></td>
+		</tr>
+	</table>
+</form>
+
+<br><h1>カートに入れる</h1>
+		<form action="#" th:action="@{/addcartitem}" method="post">
+
+			<table>
+				<tr>
+					<th>アイテムID</th>
+					<th>個数</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="itemId" />
+					</td>
+					<td>
+						<input type="text" name="number" />
+					</td>
+				</tr>
+			</table>
+
+
+			<input type="submit" value="登録" class="btn" />
+		</form>
+
+<br><h1>ショッピングカート</h1>
+<form action="#" th:action="@{/ListView}" th:object="${ItemListform}" method="post">
+	<table border="1" class="ListView">
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>個数</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each = "cartItem, stat : ${cartItems}">
+			<td><a th:text="${cartItem.itemId}"></a></td>
+			<td><a th:text="${cartItem.itemName}"></a></td>
+			<td><a th:text="${cartItem.price}"></a><a>円</a></td>
+			<td><a th:text="${cartItem.number}"></a><a>個</a></td>
+			<td><a href="" th:href="@{/deletecartitem(item_id=${cartItem.itemId})}"></a><a>削除</a></td>
+		</tr>
+	</table>
+	<a>合計金額：</a>
+</form>
+
+</body>
+</html>
