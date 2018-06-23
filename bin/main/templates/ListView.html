@@ -40,7 +40,6 @@
 				</tr>
 			</table>
 
-
 			<input type="submit" value="登録" class="btn" />
 		</form>
 
@@ -54,15 +53,14 @@
 			<th>個数</th>
 			<th>削除</th>
 		</tr>
-		<tr th:each = "cartItem, stat : ${cartItems}">
-			<td><a th:text="${cartItem.itemId}"></a></td>
+		<tr th:each = "cartItem, status : ${cartItems}">
+			<td><a th:text="${cartItem.itemId}|"></a></td>
 			<td><a th:text="${cartItem.itemName}"></a></td>
 			<td><a th:text="${cartItem.price}"></a><a>円</a></td>
 			<td><a th:text="${cartItem.number}"></a><a>個</a></td>
-			<td><a href="" th:href="@{/deletecartitem(item_id=${cartItem.itemId})}"></a><a>削除</a></td>
+			<td><a href="" th:href="@{/deletecartitem(item_id=${cartItem.itemId})}" >削除</a></td>
 		</tr>
 	</table>
-	<a>合計金額：</a>
 </form>
 
 </body>

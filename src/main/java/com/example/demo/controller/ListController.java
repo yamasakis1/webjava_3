@@ -27,7 +27,7 @@ public class ListController {
 
   //データベースから商品一覧を取得
   private List<Item> getItemList(){
-    List<Item> list = jdbcTemplate.query("SELECT * FROM items WHERE item_id = 111",
+    List<Item> list = jdbcTemplate.query("SELECT * FROM items ORDER BY item_id",
         new BeanPropertyRowMapper<Item>(Item.class));
 
 //      List<Item> list = itemRepository.findAll();
@@ -87,7 +87,7 @@ public class ListController {
 
     // パラメータで受けとったアイテムIDのデータを削除する
     // SQL文字列中の「?」の部分に、後ろで指定した変数が埋め込まれる
-    int deleteCount = jdbcTemplate.update("DELETE FROM items WHERE item_id = ?", Integer.parseInt(itemId));
+    int deleteCount = jdbcTemplate.update("DELETE FROM cartitems WHERE item_id = ?", Integer.parseInt(itemId));
 
     return "redirect:/ListView";
 
